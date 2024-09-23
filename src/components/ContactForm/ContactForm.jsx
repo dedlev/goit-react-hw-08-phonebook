@@ -2,16 +2,18 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 import { selectContacts } from '../../redux/contacts/selectors';
-import { Button, Form, Input } from '../../styles/sharedStyles';
+import { Button, Form, Input, Label } from '../../styles/sharedStyles';
 
-export const ContactForm = () => {
+export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    onSubmit();
 
     const isExistingContact = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -20,13 +22,13 @@ export const ContactForm = () => {
     if (isExistingContact) {
       alert(`${name} вже є в контактах.`);
       setName('');
-      setPhone('');
+      setNumber('');
       return;
     }
 
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   const handleChange = event => {
@@ -37,8 +39,8 @@ export const ContactForm = () => {
         setName(value);
         break;
 
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
 
       default:
@@ -48,7 +50,7 @@ export const ContactForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <label>
+      <Label>
         <p>Name</p>
         <Input
           type="text"
@@ -57,18 +59,18 @@ export const ContactForm = () => {
           onChange={handleChange}
           required
         />
-      </label>
-      <label>
+      </Label>
+      <Label>
         <p>Phone</p>
         <Input
           type="tel"
-          name="phone"
-          value={phone}
+          name="number"
+          value={number}
           onChange={handleChange}
           required
         />
-      </label>
-      <Button type="submit" disabled={!(name && phone)}>
+      </Label>
+      <Button type="submit" disabled={!(name && number)}>
         Add contact
       </Button>
     </Form>

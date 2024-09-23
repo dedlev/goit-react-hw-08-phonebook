@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
   display: flex;
+  /* margin-left: 12px; */
   flex-direction: column;
   outline: 1px solid;
   width: 400px;
@@ -13,12 +14,18 @@ export const Input = styled.input`
   padding: 4px;
   font-size: 16px;
   outline: none;
-  margin: 4px 0 28px;
+  margin: 4px 0 16px;
 
   &:focus {
     outline: 2px solid rgb(96, 192, 255);
     border-radius: 4px;
   }
+`;
+
+export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
 `;
 
 export const Button = styled.button`

@@ -10,7 +10,7 @@ import { refreshUser } from '../redux/auth/operation';
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
 const LoginPage = lazy(() => import('../pages/Login.js'));
-const PhonebookPage = lazy(() => import('../pages/Phonebook'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -20,9 +20,11 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  if (isRefreshing) {
+    return <b>Refreshing user...</b>;
+  }
+
+  return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
@@ -30,7 +32,7 @@ export const App = () => {
           path="/register"
           element={
             <RestrictedRoute
-              redirectTo="/phonebook"
+              redirectTo="/contacts"
               component={<RegisterPage />}
             />
           }
@@ -38,48 +40,16 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            <RestrictedRoute redirectTo="phonebook" component={<LoginPage />} />
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
           }
         />
         <Route
-          path="/phonebook"
+          path="/contacts"
           element={
-            <PrivateRoute redirectTo="/login" component={<PhonebookPage />} />
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
       </Route>
     </Routes>
   );
 };
-
-// export const App = () => {
-//   return (
-//     <Routes>
-//       <Route path="/" element={<Layout />}>
-//         <Route index element={<HomePage />} />
-//         <Route path="/register" element={<RegisterPage />} />
-//         <Route path="/login" element={<LoginPage />} />
-//         <Route path="/phonebook" element={<PhonebookPage />} />
-//       </Route>
-//     </Routes>
-//   );
-// };
-
-// import React from 'react';
-// import { ContactForm } from './ContactForm/ContactForm';
-// import { Filter } from './Filter/Filter';
-// import { ContactList } from './ContactList/ContactList';
-// import { GlobalStyle } from '../styles/GlobalStyle';
-
-// export const App = () => {
-//   return (
-//     <div>
-//       <h1>Phonebook</h1>
-//       <ContactForm />
-//       <h2>Contacts</h2>
-//       <Filter />
-//       <ContactList />
-//       <GlobalStyle />
-//     </div>
-//   );
-// };
