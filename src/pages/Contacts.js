@@ -1,5 +1,6 @@
-import { IoAddCircle } from 'react-icons/io5';
-import { IconContext } from 'react-icons';
+import { Box, IconButton } from '@mui/material';
+import { AddCircle } from '@mui/icons-material';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import { useState } from 'react';
 import { ContactForm } from '../components/ContactForm/ContactForm';
 import { Filter } from '../components/Filter/Filter';
@@ -20,23 +21,16 @@ export default function Contacts() {
   return (
     <div>
       <Filter />
-      <IconContext.Provider
-        value={{
-          color: 'DeepSkyBlue',
-          size: '2em',
-          className: 'global-class-name',
-        }}
-      >
-        {!showForm && (
-          <IoAddCircle
-            type="button"
-            onClick={handleOnClick}
-            style={{ cursor: 'pointer' }}
-          ></IoAddCircle>
-        )}
-      </IconContext.Provider>
+      {!showForm && (
+        <IconButton onClick={handleOnClick} color="primary" size="large">
+          <AddCircle fontSize="inherit" />
+        </IconButton>
+      )}
       {showForm && <ContactForm onSubmit={handleFormSubmit} />}
-      <h4>Contacts</h4>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <ContactPhoneIcon sx={{ fontSize: '1rem', marginRight: '0.5rem' }} />
+        <h4>Contacts</h4>
+      </Box>
       <ContactList />
       <GlobalStyle />
     </div>

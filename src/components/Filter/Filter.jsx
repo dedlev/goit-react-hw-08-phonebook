@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { selectFilter } from '../../redux/contacts/selectors';
 import { setFilter } from '../../redux/contacts/filtersSlice';
-import { FilterInput, FilterWrapper, SearchIcon } from './Filter.styled';
+import { Box, TextField } from '@mui/material';
 
 export const Filter = () => {
   const filter = useSelector(selectFilter);
@@ -12,16 +12,25 @@ export const Filter = () => {
   };
 
   return (
-    <FilterWrapper>
-      {/* Find contacts by name */}
-      <SearchIcon />
-      <FilterInput
-        type="text"
-        name="filter"
+    <Box
+      component="form"
+      onChange={handleChange}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        width: '300px',
+        margin: '28px auto',
+      }}
+    >
+      <TextField
+        label="Find contacts by name"
+        variant="outlined"
+        type="email"
         value={filter}
-        onChange={handleChange}
-        placeholder="Find contacts by name"
+        name="email"
+        fullWidth
       />
-    </FilterWrapper>
+    </Box>
   );
 };

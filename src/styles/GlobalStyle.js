@@ -11,6 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 60px;
   font-size: 20px;
+  background-color: #F5F5F5;
   p {
     margin: 0;
   }

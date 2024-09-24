@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/operation';
-import { Form, Input, Button, Label } from '../../styles/sharedStyles';
+import { Box, Button, TextField } from '@mui/material';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -19,20 +19,34 @@ export const LoginForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      {/* <Form onSubmit={handleSubmit} autocomplete="of"> */}
-      <Label>
-        Email
-        <Input type="email" name="email" />
-      </Label>
-      <Label>
-        Password
-        <Input type="password" name="password" />
-      </Label>
-      <Button type="submit">
-        {/* <Button type="submit" disabled={!(email && password)}> */}
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        width: '300px',
+        margin: '28px auto',
+      }}
+    >
+      <TextField
+        label="Email"
+        variant="outlined"
+        type="email"
+        name="email"
+        fullWidth
+      />
+      <TextField
+        label="Password"
+        variant="outlined"
+        type="password"
+        name="password"
+        fullWidth
+      />
+      <Button type="submit" variant="contained" color="primary" fullWidth>
         LogIn
       </Button>
-    </Form>
+    </Box>
   );
 };

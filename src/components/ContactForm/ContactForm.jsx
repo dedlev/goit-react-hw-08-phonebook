@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 import { selectContacts } from '../../redux/contacts/selectors';
-import { Button, Form, Input, Label } from '../../styles/sharedStyles';
+import { Box, Button, TextField } from '@mui/material';
 
 export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -49,30 +49,44 @@ export const ContactForm = ({ onSubmit }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label>
-        <p>Name</p>
-        <Input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-          required
-        />
-      </Label>
-      <Label>
-        <p>Phone</p>
-        <Input
-          type="tel"
-          name="number"
-          value={number}
-          onChange={handleChange}
-          required
-        />
-      </Label>
-      <Button type="submit" disabled={!(name && number)}>
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        width: '300px',
+        margin: '40px auto',
+      }}
+    >
+      <TextField
+        label="Name"
+        variant="outlined"
+        type="text"
+        name="name"
+        value={name}
+        onChange={handleChange}
+        fullWidth
+      />
+      <TextField
+        label="Number"
+        variant="outlined"
+        type="tel"
+        name="number"
+        value={number}
+        onChange={handleChange}
+        fullWidth
+      />
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+        disabled={!(name && number)}
+      >
         Add contact
       </Button>
-    </Form>
+    </Box>
   );
 };

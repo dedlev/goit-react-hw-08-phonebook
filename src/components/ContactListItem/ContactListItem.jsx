@@ -1,18 +1,17 @@
 import React from 'react';
-import { DeleteButton } from './ContactListItem.styled';
+import { ListItem, ListItemText, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const ContactListItem = ({
   contact: { id, name, number },
   onDelete,
 }) => {
   return (
-    <li>
-      <p>
-        {name}: {number}
-        <DeleteButton type="button" onClick={() => onDelete(id)}>
-          Delete
-        </DeleteButton>
-      </p>
-    </li>
+    <ListItem>
+      <ListItemText primary={name} secondary={number} />
+      <IconButton edge="end" color="secondary" onClick={() => onDelete(id)}>
+        <DeleteIcon />
+      </IconButton>
+    </ListItem>
   );
 };

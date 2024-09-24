@@ -7,7 +7,7 @@ import {
 } from '../../redux/contacts/selectors';
 import { deleteContact, fetchContacts } from '../../redux/contacts/operations';
 import { ContactListItem } from '../ContactListItem/ContactListItem';
-import { Spinner } from 'utils/Spinner';
+import { List, Box, CircularProgress } from '@mui/material';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
@@ -32,10 +32,10 @@ export const ContactList = () => {
   const filteredContacts = getFilteredContacts();
 
   return (
-    <div>
-      {isLoading && <Spinner />}
+    <Box>
+      {isLoading && <CircularProgress />}
       {!isLoading && (
-        <ul>
+        <List>
           {filteredContacts.map(contact => (
             <ContactListItem
               key={contact.id}
@@ -43,8 +43,8 @@ export const ContactList = () => {
               onDelete={handleDelete}
             />
           ))}
-        </ul>
+        </List>
       )}
-    </div>
+    </Box>
   );
 };
