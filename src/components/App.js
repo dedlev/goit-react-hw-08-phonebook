@@ -2,6 +2,7 @@ import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
+import { GlobalStyle } from '../styles/GlobalStyle';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { useAuth } from '../hooks';
@@ -25,6 +26,7 @@ export const App = () => {
   }
 
   return (
+    <>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
@@ -51,5 +53,8 @@ export const App = () => {
         />
       </Route>
     </Routes>
+
+     <GlobalStyle />
+     </>
   );
 };

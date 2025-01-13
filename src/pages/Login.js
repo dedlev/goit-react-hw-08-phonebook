@@ -1,4 +1,3 @@
-import { GlobalStyle } from '../styles/GlobalStyle';
 import { LoginForm } from '../components/LoginForm/LoginForm';
 
 export default function Login() {
@@ -6,7 +5,6 @@ export default function Login() {
     <div>
       <title>Login</title>
       <LoginForm />
-      <GlobalStyle />
     </div>
   );
 }

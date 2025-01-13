@@ -1,4 +1,3 @@
-import { GlobalStyle } from '../styles/GlobalStyle';
 import { RegisterForm } from '../components/RegisterForm/RegisterForm';
 
 export default function Register() {
@@ -6,7 +5,6 @@ export default function Register() {
     <div>
       <title>Registration</title>
       <RegisterForm />
-      <GlobalStyle />
     </div>
   );
 }

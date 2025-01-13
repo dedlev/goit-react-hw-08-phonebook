@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { ContactForm } from '../components/ContactForm/ContactForm';
 import { Filter } from '../components/Filter/Filter';
 import { ContactList } from '../components/ContactList/ContactList';
-import { GlobalStyle } from '../styles/GlobalStyle';
 
 export default function Contacts() {
   const [showForm, setShowForm] = useState(false);
@@ -32,7 +31,6 @@ export default function Contacts() {
         <h4>Contacts</h4>
       </Box>
       <ContactList />
-      <GlobalStyle />
     </div>
   );
 }

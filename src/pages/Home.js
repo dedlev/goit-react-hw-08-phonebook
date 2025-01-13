@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
-import { GlobalStyle } from '../styles/GlobalStyle';
 const MyComponent = () => {
   return (
     <div>
@@ -21,7 +20,6 @@ const MyComponent = () => {
       Contacts manager welcome page
     </Typography>
   </Box>
-  <GlobalStyle />
   </div>
   );
 };
